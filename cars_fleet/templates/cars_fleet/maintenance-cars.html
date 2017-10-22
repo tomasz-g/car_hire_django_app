@@ -1,0 +1,55 @@
+{% extends "base_page.html" %}
+
+{% block main-content %}
+<section class="car-details">
+    {% if maintenance_cars %}
+        {% for car in maintenance_cars %}
+            <section class="car-details-container">
+                <h1>{{ car.car.car_make_and_model }}</h1>
+                {% if car.is_overdue %}
+                    <span class="not-available">
+                        Return date:<br>
+                        {{ car.date_of_return }}
+                    </span>
+                {% elif car.date_of_return %}
+                <span>
+                    Return date:<br>
+                    {{ car.date_of_return }}
+                </span>
+                {% endif %}
+                <img class="image-link" src="{{ car.car.car_image.url }}" alt="{{ car.car }} Image"/>
+                <section class="car-details-description">
+                    <i class="material-icons">euro_symbol</i>
+                    <p>{{ car.car.car_type }}</p>
+                    <i class="material-icons">directions_car</i>
+                    <p>{{ car.car.car_body }}</p>
+                    <i class="material-icons">airline_seat_recline_normal</i>
+                    <p>{{ car.car.passangers }}</p>
+                    <i id="door" class="material-icons">sim_card_alert</i>
+                    <p>{{ car.car.num_of_doors }}</p>
+                    {% if car.engine_size %}
+                        <i class="material-icons">view_carousel</i>
+                        <p>{{ car.engine_size }} liter</p>
+                    {% endif %}
+                    <i class="material-icons">local_gas_station</i>
+                    <p>{{ car.fuel }}</p>
+                    <i class="material-icons">settings</i>
+                    <p>{{ car.transmission }}</p>
+                </section> <!-- end car-details-description -->
+                <section class="car-detail-extras">
+                    {% if car.display_specs %}
+                    {% for spec in car.display_specs %}
+                        <span>
+                            <i class="material-icons">done</i>
+                            <p {% if forloop.last %} class="no-separetor"{% endif %}>{{ spec }}</p>
+                        </span>
+                    {% endfor %}
+                    {% endif %}
+                </section>
+            </section> <!-- end car-details-container -->
+        {% endfor %} <!-- end for loop in client_cars -->
+    {% else %}
+    <h1>You have no cars at the moment.</h1>
+    {% endif %}
+</section> <!-- end car-details -->
+{% endblock %}

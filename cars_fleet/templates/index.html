@@ -1,0 +1,37 @@
+{% extends "base_page.html" %}
+
+{% block title %}<title>Car Hire Home</title>{% endblock %}
+
+{% block main-content %}
+<section class="home-main-img">
+    <h1>Best Worldwide Car Hire Deals</h1>
+    <h3>Largest choice with unbeatable prices</h3>
+</section>
+<main>
+    <p>
+        While others are trying to reach high standards Car Hire Company
+        is setting them. The number one concierge service for All Car Rental..<br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed at delectus,
+        aut molestiae, ipsa amet doloremque numquam fugit dicta incidunt.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti,
+        est, dignissimos. Cum nobis neque error, obcaecati ea distinctio modi
+        ab quo hic natus totam aperiam unde fuga iure odit, odio.<br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ipsa hic
+        beatae ipsum similique commodi unde vero libero porro animi soluta harum
+        deserunt, veniam necessitatibus quaerat cumque a neque explicabo
+        exercitationem impedit, iste repudiandae. Maxime id perspiciatis
+        dolorem. Vero sint delectus dolores commodi aliquid natus officia
+        rem laboriosam sit eum!<br><br>
+        Click on one of the brands below for more about our fleet cars.
+     </p>
+</main>
+<section class="home-manufacturers-logo">
+    {% if all_manufacturers %}
+        {% for logo in all_manufacturers %}
+            <a href="{% url 'one-brand-cars' logo.pk %}">
+                <img src="{{ logo.manufacturer_logo.url }}"/>
+            </a>
+        {% endfor %}
+    {% endif %}
+</section>
+{% endblock %}

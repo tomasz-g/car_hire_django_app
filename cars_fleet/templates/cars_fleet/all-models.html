@@ -1,0 +1,27 @@
+{% extends "base_page.html" %}
+
+{% block main-content %}
+<section class="cars-fleet">
+    {% if cars_fleet %}
+        {% for car in cars_fleet %}
+        <section class="car-container">
+            <h1>{{ car.car_make_and_model }} <span>{{ car.car_type }}</span></h1>
+            <a href="{{ car.get_absolute_url }}">
+                <img class="image-link" src="{{ car.car_image.url }}" alt="{{ car.car_make_and_model }} Image"/>
+            </a>
+            <section class="car-description">
+                <i class="material-icons">directions_car</i>
+                <p>{{ car.car_body }}</p>
+                <i class="material-icons">airline_seat_recline_normal</i>
+                <p>{{ car.passangers }}</p>
+                <i id="door" class="material-icons">sim_card_alert</i>
+                <p>{{ car.num_of_doors }}</p>
+            </section> <!-- end car-description -->
+        </section> <!-- end car-container -->
+        {% endfor %} <!-- end for loop in cars_fleet -->
+
+    {% else %}
+        <p>No cars to display</p>
+    {% endif %} <!-- end if cars_fleet -->
+</section> <!-- end cars-fleet -->
+{% endblock %}
