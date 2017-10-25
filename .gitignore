@@ -9,6 +9,8 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
+migrations
+admin
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
