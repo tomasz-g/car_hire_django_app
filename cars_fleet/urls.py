@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from . import views
 
@@ -22,4 +22,8 @@ urlpatterns += [
 # URLs available only for logged in users
 urlpatterns += [
     url(r'^myaccount/$', views.RentedCarsByClientListView.as_view(), name="client-cars"),
+]
+
+urlpatterns += [
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 ]
