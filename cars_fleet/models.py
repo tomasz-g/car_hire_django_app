@@ -217,6 +217,9 @@ class CarTransmissionType(models.Model):
 class CarRegistrationNumber(models.Model):
     registration = models.CharField(help_text="Car Registration Number", max_length=15, unique=True)
 
+    class Meta:
+        unique_together = (('registration'),)
+
     def __str__(self):
         return '{}'.format(self.registration)
 
@@ -231,7 +234,7 @@ class CarInstance(models.Model):
     )
 
     car_status = models.CharField(max_length=1, choices=RENT_STATUS, default='a', help_text="Car availability", verbose_name="Status")
-    car_registration = models.ForeignKey(CarRegistrationNumber)
+    car_registration = models.OneToOneField(CarRegistrationNumber)
     car = models.ForeignKey(Car)
     engine_size = models.ForeignKey(CarEngineSize, null=True, blank=True)
     fuel = models.ForeignKey(CarFuelType)
