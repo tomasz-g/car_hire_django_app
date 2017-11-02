@@ -657,7 +657,6 @@ section.login-form {
         grid-column: 1 / 8;
         margin: 20px 10px;
         padding: 10px 0;
-        border-right: 1px solid rgb(200, 200, 200);
         border-bottom: none;
     }
     section.car-details-description {
@@ -665,6 +664,7 @@ section.login-form {
         grid-column: 8 / 11;
         margin: 20px;
         padding: 10px;
+        border-left: 1px solid rgb(200, 200, 200);
     }
     section.car-details-description p {
         font-size: 1.1rem;
