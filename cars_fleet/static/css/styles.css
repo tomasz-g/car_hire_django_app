@@ -491,7 +491,7 @@ section.login-form {
     }
     header img {
         padding: 10px 0;
-        max-width: none;
+        max-width: 350px;
     }
     #login {
         padding: 10px 60px;
