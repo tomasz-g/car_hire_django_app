@@ -28,16 +28,10 @@
                     <a href="{% url 'login' %}?next={{request.path}}">login</a>
                 {% endif %}
             </section>
-            <nav>
-                {% if user.is_authenticated %}
-                    <a id="client-link"href="{% url 'client-cars' %}">My Cars</a>
-                {% endif %}
-                <a href="{% url 'index' %}">HOME</a>
-                <a href="{% url 'all-models' %}">CARS</a>
-                <a href="#">ABOUT US</a>
-                <a href="#">LOCATIONS</a>
-                <a href="#">CONTACT</a>
-
+            <nav class="top-nav" id="nav-icon">
+                <a href="#" class="icon" onclick="showHideMenu()">
+                    <i class="material-icons">menu</i>
+                </a>
                 {% if user.is_staff %}
                 <section class="staff-links">
                   <span>STAFF</span>
@@ -52,8 +46,15 @@
                   </div>
                 </section> <!-- end staff-links -->
                 {% endif %}
-
-            </nav>
+                <a href="{% url 'index' %}">HOME</a>
+                <a href="{% url 'all-models' %}">CARS</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">LOCATIONS</a>
+                <a href="#">CONTACT</a>
+                {% if user.is_authenticated %}
+                    <a id="client-link"href="{% url 'client-cars' %}">My Cars</a>
+                {% endif %}
+            </nav> <!-- end top-nav -->
         </header>
         {% endblock %}
 
@@ -81,8 +82,8 @@
 
         {% block footer %}
         <footer><!-- contact, website navigation bar and logo -->
-            <nav>
-                <h1>Contact Us</h3>
+            <nav class="contact-nav">
+                <h1>Contact Us</h1>
                 <a href="#"><i class="fa fa-phone-square"></i>+353-1-000000</a>
                 <a href="#"><i class="fa fa-envelope"></i>contact@carhire.temp</a>
                 <a href="#"><i class="fa fa-facebook-square"></i>carhire</a>
@@ -91,12 +92,31 @@
                 <a href="#"><i class="fa fa-twitter-square"></i>@carhire</a>
                 <a href="#"><i class="fa fa-instagram"></i>@carhire</a>
             </nav>
-            <nav>
-                <a href="{% url 'index' %}"><i class="fa fa-circle-thin" aria-hidden="true"></i>Home</a>
-                <a href="{% url 'all-cars' %}"><i class="fa fa-circle-thin" aria-hidden="true"></i>Cars</a>
-                <a href="#"><i class="fa fa-circle-thin" aria-hidden="true"></i>About Us</a>
-                <a href="#"><i class="fa fa-circle-thin" aria-hidden="true"></i>Locations</a>
-                <a href="#"><i class="fa fa-circle-thin" aria-hidden="true"></i>Contact</a>
+            <nav class="bottom-nav">
+                <a href="{% url 'index' %}">
+                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    Home
+                </a>
+                <i class="bar">|</i>
+                <a href="{% url 'all-models' %}">
+                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    Cars
+                </a>
+                <i class="bar">|</i>
+                <a href="#">
+                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    About Us
+                </a>
+                <i class="bar">|</i>
+                <a href="#">
+                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    Locations
+                </a>
+                <i class="bar">|</i>
+                <a href="#">
+                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
+                    Contact
+                </a>
             </nav>
             <div>
                 <img src="{% static 'images/car-hire-logo-1.png' %}" alt="company logo"/>
@@ -105,7 +125,8 @@
 
         </footer>
         {% endblock %}
-
     </div> <!-- end page-wrapper -->
+
+    <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>
