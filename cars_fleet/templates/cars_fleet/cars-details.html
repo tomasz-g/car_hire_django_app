@@ -1,5 +1,7 @@
 {% extends "base_page.html" %}
 
+{% block title %}<title>Car Details</title>{% endblock %}
+
 {% block main-content %}
 <section class="car-details">
     {% for car in cars_details.carinstance_set.all %}
