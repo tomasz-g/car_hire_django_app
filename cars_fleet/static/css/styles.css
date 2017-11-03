@@ -134,6 +134,22 @@ section.staff-links span + div > ul > li:hover > a {
     background-color: black;
 }
 
+/* pagination block - small devices */
+.pagination {
+    grid-column: 1 / 5;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.pagination a {
+    text-decoration: none;
+    color: white;
+    padding: 0 5px;
+}
+.pagination i {
+    font-size: 1.6rem;
+}
+
 /* footer - base_page.html - visible on all pages - small devices style */
 footer {
     background-image: url("../images/footer-background.jpg");
@@ -449,9 +465,6 @@ section.login-form {
     nav.top-nav section.staff-links span {
         display: none;
     }
-    div.pagination {
-        display: none;
-    }
 }
 
 @media(min-width:465px) and (max-width:767px) {
@@ -530,18 +543,9 @@ section.login-form {
     /* pagination block - large devices */
     .pagination {
         grid-column: 1 / 13;
-        display: flex;
-        justify-content: flex-start;
         padding-bottom: 50px;
         padding-left: 100px;
-    }
-    .pagination a {
-        text-decoration: none;
-        color: white;
-        padding: 0 5px;
-    }
-    .pagination i {
-        font-size: 1.6rem;
+        justify-content: flex-start
     }
 
     /* footer - base_page.html - visible on all pages - large devices styles */
