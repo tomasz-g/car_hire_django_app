@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 
 from . import views
 
@@ -24,6 +25,11 @@ urlpatterns += [
     url(r'^myaccount/$', views.RentedCarsByClientListView.as_view(), name="client-cars"),
 ]
 
+
 urlpatterns += [
     url(r'^accounts/', include('django.contrib.auth.urls')),
+]
+
+urlpatterns += [
+    url(r'^humans.txt/$', TemplateView.as_view(template_name="humans.txt")),
 ]

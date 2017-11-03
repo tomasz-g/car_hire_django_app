@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body>
+<pre style="word-wrap: break-word; white-space: pre-wrap;">
+/* IMAGES CREDIT */
+    http://pcwallart.com
+
+/* SITE */
+	Online since: 2017/11
+	Language: / English /
+	Doctype:HTML5
+	IDE: Atom, Git Bash, CMD, Notepad++, Paint.net
+</pre>
+</body>
+</html>
