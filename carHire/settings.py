@@ -133,3 +133,12 @@ MEDIA_URL = '/static/media/'
 
 # Redirect to index URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+
+# Using GunMail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@carhire.tomaszgolas.com'
+EMAIL_HOST_PASSWORD = os.environ.get('MGMAIL_PASS', 'password')
