@@ -14,15 +14,12 @@ html {
     margin: 0;
     padding: 0;
 }
-
-/* wrapper for small devices */
 #page-wrapper {
     max-width: 100vw;
     display: grid;
     grid-template-columns: repeat(4, 25vw);
 }
-
-/* header - base_page.html - small devices styles */
+/* header - base_page.html */
 header {
     grid-column: 1 / 5;
     display: grid;
@@ -48,23 +45,33 @@ header a:hover {
     text-decoration: none;
     color: rgb(255, 255, 255);
 }
-#login {
-    grid-column: 1 / 2;
-    padding-left: 10px;
+a.current {
+    background-color: rgba(255, 69, 0, 0.8);
+    color: rgb(255, 255, 255);
+    padding: 2px 10px;
+    border-radius: 5px;
 }
-#login a {
-    font-size: 1rem;
-    color: white;
+header a:active {
+    color: rgb(255, 69, 0);
 }
-#login a:hover {
-    color: rgb(48, 214, 238);
-}
-#login span {
-    font-weight: bold;
-    padding-left: 10px;
-}
+/* under header-logo login */
+    #login {
+        grid-column: 1 / 2;
+        padding-left: 10px;
+    }
+    #login a {
+        font-size: 1rem;
+        color: white;
+    }
+    #login a:hover {
+        color: rgb(48, 214, 238);
+    }
+    #login span {
+        font-weight: bold;
+        padding-left: 10px;
+    }
 
-/* link visible only when logged */
+/* "MY CARS" link - visible only when logged in */
     #client-link {
         color: white;
     }
@@ -75,6 +82,7 @@ header a:hover {
 /* top nav bar for small devices */
 nav.top-nav {
     margin-top: 10px;
+    padding-bottom: 10px;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     display: flex;
@@ -91,13 +99,15 @@ nav.top-nav {
     border-left: solid 1px rgb(48, 214, 238);
 }
 
-/* button to show/hide nav bar - small devices */
+/* button to show/hide nav bar on small devices */
 a.icon {
     align-self: flex-end;
     padding-right: 10px;
 }
 
-/* link visible only with staff permission */
+/* link "STAFF" and drop down menu
+- visible only when logged in with staff permission
+- on small devices */
 section.staff-links > span {
     color: white;
     font-size: 1.3rem;
@@ -218,10 +228,9 @@ i.bar {
     color: rgb(255, 255, 255);
 }
 
-/* under header section on home page - index.html */
+/* under header section on home page - index.html - small devices */
 section.home-main-img {
     margin-top: 80px;
-    padding-top: 20px;
     grid-column: 1 / 5;
     background-image: url("../images/car-hire-main-image1.jpg");
     height: auto;
@@ -246,7 +255,7 @@ section.home-main-img h3 {
     padding-left: 5px;
 }
 
-/* main text on home page - index.html */
+/* main text on home page - index.html - smalll devices */
 main {
     grid-column: 1 / 5;
     padding: 10px;
@@ -254,7 +263,7 @@ main {
     font-size: 1.1rem;
 }
 
-/* car logos images on home page - index.html */
+/* links - car logos images on home page - index.html - small devices */
 section.home-manufacturers-logo {
     grid-column: 1 / 5;
     padding: 10px 0;
@@ -271,6 +280,9 @@ section.home-manufacturers-logo img {
     max-height: 80px;
     padding: 10px;
     margin: 0;
+}
+section.home-manufacturers-logo img:hover {
+    padding: 0;
 }
 
 /* cars fleet secton on all-models page - small devices style */
@@ -312,6 +324,7 @@ section.car-container > a > img {
     height: auto;
     border-bottom: 1px solid rgb(200, 200, 200);
 }
+/* icons on the bottom of the car-container */
 section.car-description {
     font-family: 'Open Sans Condensed';
     grid-column: 1 / 7;
@@ -350,6 +363,9 @@ section.car-details {
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 25px;
+}
+section.car-details > h1 {
+    text-align: center;
 }
 section.car-details-container {
     display: grid;
@@ -429,29 +445,99 @@ section.car-detail-extras > span > p {
 p.no-separetor:last-child {
     border-right: none;
 }
-
+/* Forms background - small devices style */
+section.form-wrapper {
+    margin-top: 80px;
+    grid-column: 1 / 5;
+    background-image: url("../images/car-hire-main-image1.jpg");
+    height: auto;
+    width: 100vw;
+    background-size: cover;
+    background-position: bottom right;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
 /* login pages - small devices style */
 section.login-form {
-    font-family: Arial, sans-serif;
-    margin-top: 135px;
-    grid-column: 1 / 5;
-    padding: 10px;
-    line-height: 1.5rem;
-}
-#button {
-    margin-top: 10px;
-    padding: 5px;
-    font-size: .8rem;
+    font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
     font-weight: bold;
-    width: 100px;
+    background-color: rgba(255, 69, 0, 0.7);
+    line-height: 1.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    width: 100vw;
+    min-height: 60vh;
 }
 #lost-password {
-    padding-top: 25px;
+    align-self: flex-end;
+    padding-right: 10px;
 }
 #lost-password a {
     text-decoration: none;
-    color: rgb(255, 69, 0);
+    color: rgb(255, 255, 255);
+    font-size: .8rem;
+    font-weight: normal;
+}
+/* Contact page - small devices style */
+section.contact-container {
+    font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
+    background-color: rgba(255, 69, 0, 0.7);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100vw;
+}
+fieldset {
+    border: none;
+}
+/* submit button on form pages */
+.button {
+    background-color: rgb(48, 214, 238);
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
     font-size: .7rem;
+}
+/* Thanks page - small devices style */
+section.email-thanks {
+    font-family: Impact, 'Anton', sans-serif;
+    background-color: rgba(255, 69, 0, 0.7);
+    width: 100vw;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+#thanks {
+    padding-bottom: 50px;
+}
+#envelope {
+  font-size: 0%;
+  -webkit-animation-name: flying-envelope; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+  animation-name: flying-envelope;
+  animation-duration: 2s;
+}
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes flying-envelope {
+  from   {font-size: 700%;}
+  to {font-size: 0%;}
+}
+
+/* Standard syntax */
+@keyframes flying-envelope {
+  from   {font-size: 700%;}
+  to {font-size: 0%;}
 }
 
 /* ========== @media ========================= */
@@ -467,10 +553,13 @@ section.login-form {
     }
 }
 
+/* Medium devices */
 @media(min-width:465px) and (max-width:767px) {
+    /* footer contact links */
     nav.contact-nav {
         padding-left: 20px;
     }
+    /* footer navigation */
     nav.bottom-nav {
         font-size: 1rem;
         padding-right: 20px;
@@ -479,7 +568,7 @@ section.login-form {
     nav.bottom-nav a {
         font-size: 1rem;
     }
-    footer div {
+    footer div { /* logo and copyrights */
         padding-right: 50px;
     }
     section.car-details {
@@ -493,7 +582,7 @@ section.login-form {
         padding: 10px 30px 50px;
     }
 }
-
+/* Large devices */
 @media(min-width:768px) {
     html {
         max-width: 1280px;
@@ -504,13 +593,13 @@ section.login-form {
     #page-wrapper {
         grid-template-columns: repeat(12, 1fr);
         min-height: 100vh;
+        max-width: 1280px;
     }
-
     /* header - base_page.html - visible on all pages - large devices */
     header {
         grid-column: 1 / 13;
         grid-row: 1 /2;
-        grid-template-columns: 25vw 1fr;
+        grid-template-columns: 25% 1fr;
         padding-bottom: 5px;
         width: 100vw;
         max-width: 1280px;
@@ -519,9 +608,11 @@ section.login-form {
         padding: 10px 0;
         max-width: 350px;
     }
+    /* under header-logo login */
     #login {
         padding: 10px 60px;
     }
+    /* header navigation bar */
     nav.top-nav {
         margin: 0;
         grid-row: 2 / auto;
@@ -530,16 +621,13 @@ section.login-form {
         justify-content: space-evenly;
         align-items: flex-end;
     }
-
     /* hide small devices menu button */
         nav.top-nav a.icon {
             display: none;
         }
-
     section.staff-links span + div > ul {
         padding: 0;
     }
-
     /* pagination block - large devices */
     .pagination {
         grid-column: 1 / 13;
@@ -547,7 +635,6 @@ section.login-form {
         padding-left: 100px;
         justify-content: flex-start
     }
-
     /* footer - base_page.html - visible on all pages - large devices styles */
     footer {
         padding: 20px;
@@ -555,12 +642,14 @@ section.login-form {
         grid-template-columns: 1fr 1fr 25%;
         align-items: start;
     }
+    /* footer contact links */
     nav.contact-nav {
         grid-column: 1 / 2;
         display: grid;
         grid-column: 1fr;
         justify-content: start;
     }
+    /* footer navigation */
     nav.bottom-nav {
         margin-top: 30px;
         grid-column: 2 / 3;
@@ -579,11 +668,11 @@ section.login-form {
     i.bar {
         display: none;
     }
-    footer div {
+    footer div { /* logo and copyrights */
         grid-column: 3 / 4;
         align-self: center;
     }
-    footer img {
+    footer img { /* logo */
         max-width: none;
     }
     footer p {
@@ -594,6 +683,7 @@ section.login-form {
     section.home-main-img {
         margin-top: 200px;
         grid-column: 1 / 13;
+        width: 100%;
         max-width: 1280px;
         font-family: Impact, 'Anton', sans-serif;
     }
@@ -613,7 +703,7 @@ section.login-form {
         padding: 30px 40px;
     }
 
-    /* car logos images on home page - index.html - large devices styles */
+    /* links - car logos images on home page - index.html - large devices */
     section.home-manufacturers-logo {
         grid-column: 1 / 13;
         padding: 20px 0;
@@ -704,12 +794,31 @@ section.login-form {
         margin-right: 10px;
         border-right: solid 1px rgb(200, 200, 200);
     }
-
+    /* Forms background - large devices */
+    section.form-wrapper {
+        margin-top: 200px;
+        grid-column: 1 / 13;
+        max-width: 1280px;
+        font-family: Impact, 'Anton', sans-serif;
+    }
     /* login pages */
     section.login-form {
-        margin-top: 200px;
-        padding-top: 50px;
-        grid-column: 2 / 9;
-        height: 60vh;
+    }
+    #lost-password {
+        align-self: center;
+    }
+    /* Contact page - large devices style */
+    section.contact-container {
+        justify-content: flex-start;
+        padding-left: 5%;
+        width: 45%;
+    }
+    /* Thanks page - large devices style */
+    section.email-thanks {
+        width: 45%;
+        min-height: 60vh;
+    }
+    #thanks {
+        font-size: 2rem;
     }
 } /* end min-width 768px */
