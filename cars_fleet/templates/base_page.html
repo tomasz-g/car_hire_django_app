@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% block title %}<title>Car Hire</title>{% endblock %}
+  {% block title %}{% endblock %}
+  {% block meta %}{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome icons -->
@@ -47,10 +48,10 @@
                 </section> <!-- end staff-links -->
                 {% endif %}
                 <a href="{% url 'index' %}">HOME</a>
-                <a href="{% url 'all-models' %}">CARS</a>
+                <a href="{% url 'all-models' %}">FLEET</a>
                 <a href="#">ABOUT US</a>
                 <a href="#">LOCATIONS</a>
-                <a href="#">CONTACT</a>
+                <a href="{% url 'contact' %}">CONTACT</a>
                 {% if user.is_authenticated %}
                     <a id="client-link"href="{% url 'client-cars' %}">My Cars</a>
                 {% endif %}
@@ -100,7 +101,7 @@
                 <i class="bar">|</i>
                 <a href="{% url 'all-models' %}">
                     <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    Cars
+                    Fleet
                 </a>
                 <i class="bar">|</i>
                 <a href="#">
@@ -113,7 +114,7 @@
                     Locations
                 </a>
                 <i class="bar">|</i>
-                <a href="#">
+                <a href="{% url 'contact' %}">
                     <i class="fa fa-circle-thin" aria-hidden="true"></i>
                     Contact
                 </a>
@@ -127,6 +128,7 @@
         {% endblock %}
     </div> <!-- end page-wrapper -->
 
-    <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
 </body>
 </html>
