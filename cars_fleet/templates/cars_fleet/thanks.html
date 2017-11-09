@@ -1,0 +1,13 @@
+{% extends "base_page.html" %}
+
+{% block title %}<title>Thank You</title>{% endblock %}
+{% block meta %}<meta http-equiv="refresh" content="3;url={% url 'contact' %}" />{% endblock %}
+
+{% block main-content %}
+<section class="form-wrapper">
+    <section class="email-thanks">
+        <p id="thanks">Thank You for the message.</p>
+        <i id="envelope" class="material-icons">mail</i>
+    </section>
+</section><!-- end of form-wrapper -->
+{% endblock %}
