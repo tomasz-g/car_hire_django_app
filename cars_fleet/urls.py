@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^all-models/$', views.CarsFleetListView.as_view(), name='all-models'),
     url(r'^one-brand/(?P<pk>\d+)$', views.ByBrandListView.as_view(), name='one-brand-cars'),
     url(r'^car/(?P<pk>\d+)$', views.CarDetailView.as_view(), name='car-detail'),
+    url(r'^contact/$', views.contact, name='contact'),
+    url(r'^thanks/$', views.thanks, name='thanks'),
 ]
 
 # URLs available only for users with staff permissions
