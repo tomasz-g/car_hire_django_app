@@ -1,15 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from datetime import date
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
-
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 from .models import CarModel, CarManufacturerAndLogo
 from .models import Car, CarSpecs, BodyType, CarType
 from .models import CarInstance, CarEngineSize
 from .models import CarFuelType, CarTransmissionType
 from .models import CarRegistrationNumber
+from .forms import ContactForm
 
 
 """
@@ -147,3 +149,26 @@ class RentedCarsByClientListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return CarInstance.objects.filter(rented_to_client=self.request.user).order_by('date_of_return')
+
+"""
+View function for Contact page
+"""
+def contact(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            contact_email = form.cleaned_data['contact_email']
+            message_text = 'email from: {} message: {}'.format(contact_email, message)
+            try:
+                send_mail(subject, message_text, contact_email, ['tomaszdamiang@gmail.com'],)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('thanks')
+    return render(request, 'cars_fleet/contact.html', {'form': form})
+
+def thanks(request):
+    return render(request, 'cars_fleet/thanks.html')
