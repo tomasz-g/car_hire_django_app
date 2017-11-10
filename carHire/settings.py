@@ -135,10 +135,23 @@ MEDIA_URL = '/static/media/'
 LOGIN_REDIRECT_URL = '/'
 
 
+# Using Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "carhiretemp@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ.get('GMAIL_PASS', 'password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
 # Using GunMail
+"""
+! Not working with free PythonAnywhere Account
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'postmaster@carhire.tomaszgolas.com'
 EMAIL_HOST_PASSWORD = os.environ.get('MGMAIL_PASS', 'password')
+"""
