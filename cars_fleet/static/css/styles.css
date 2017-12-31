@@ -747,7 +747,7 @@ section.email-thanks {
         margin-right: 20px;
     }
 
-    /* car details on car-details and client-cars page - large devices styles */
+    /* car details on car-details and client-cars page -large devices styles */
     section.car-details {
         grid-column: 3 / 11;
         margin: 250px auto 100px;

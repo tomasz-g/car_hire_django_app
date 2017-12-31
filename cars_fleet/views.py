@@ -1,17 +1,18 @@
+from datetime import date, datetime
+
 from django.shortcuts import render, redirect
 from django.views import generic
-from datetime import date
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from django.template.loader import get_template, render_to_string
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, PermissionRequiredMixin
+)
+from django.core.mail import (
+    BadHeaderError, EmailMultiAlternatives, EmailMessage
+)
 
-from .models import CarModel, CarManufacturerAndLogo
-from .models import Car, CarSpecs, BodyType, CarType
-from .models import CarInstance, CarEngineSize
-from .models import CarFuelType, CarTransmissionType
-from .models import CarRegistrationNumber
 from .forms import ContactForm
+from .models import CarManufacturerAndLogo, Car, CarInstance
 
 
 """
@@ -42,7 +43,9 @@ class ByBrandListView(generic.ListView):
     context_object_name = 'cars_fleet'
 
     def get_queryset(self, *args, **kwargs):
-        return Car.objects.filter(car_make_and_model__manufacturer_name_and_logo=self.kwargs['pk'])
+        return Car.objects.filter(
+            car_make_and_model__manufacturer_name_and_logo=self.kwargs['pk']
+        )
 
 
 """
@@ -119,7 +122,15 @@ class AllOverdueCarsListView(PermissionRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return CarInstance.objects.exclude(date_of_return__isnull=True).exclude(date_of_return__gte=date.today()).filter(car_status='n')
+        return (
+            CarInstance.objects.exclude(
+                date_of_return__isnull=True
+            ).exclude(
+                date_of_return__gte=date.today()
+            ).filter(
+                car_status='n'
+            )
+        )
 
 
 """
@@ -148,7 +159,11 @@ class RentedCarsByClientListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return CarInstance.objects.filter(rented_to_client=self.request.user).order_by('date_of_return')
+        return (
+            CarInstance.objects.filter(
+                rented_to_client=self.request.user).order_by('date_of_return'
+            )
+        )
 
 """
 View function for Contact page
@@ -162,9 +177,30 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             contact_email = form.cleaned_data['contact_email']
-            message_text = 'email from: {} message: {}'.format(contact_email, message)
+            message_text = 'email from: {} message: {}'.format(
+                                                            contact_email,
+                                                            message
+                                                        )
             try:
-                send_mail(subject, message_text, contact_email, ['carhiretemp@gmail.com'],)
+                current_time = datetime.now()
+                html = get_template('cars_fleet/email_html.html')
+                html_content = html.render(
+                    {
+                        'subject': subject,
+                        'message': message,
+                        'contact_email': contact_email,
+                        'current_time': current_time,
+                    }
+                )
+                msg = EmailMultiAlternatives(
+                    subject,
+                    message_text,
+                    contact_email,
+                    ['carhiretemp@gmail.com'],
+                )
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('thanks')
