@@ -3,13 +3,11 @@ from datetime import date, datetime
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponse
-from django.template.loader import get_template, render_to_string
+from django.template.loader import get_template
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin
 )
-from django.core.mail import (
-    BadHeaderError, EmailMultiAlternatives, EmailMessage
-)
+from django.core.mail import BadHeaderError, EmailMultiAlternatives
 
 from .forms import ContactForm
 from .models import CarManufacturerAndLogo, Car, CarInstance
