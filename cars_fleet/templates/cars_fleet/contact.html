@@ -9,25 +9,26 @@
       {% csrf_token %}
       <fieldset>
         {% for field in form %}
-          {% if field.errors %}
-            <div>
-              <label>{{ field.label }}</label>
-                <div>{{ field }}
-                  <span>
-                    {% for error in  field.errors %}{{ error }}{% endfor %}
-                  </span>
-                </div>
-            </div>
-          {% else %}
-            <div>
-              <label>{{ field.label }}</label>
-                <div>{{ field }}
-                  {% if field.help_text %}
-                    <p><small>{{ field.help_text }}</small></p>
-                  {% endif %}
-                </div>
-            </div>
-          {% endif %}
+        {% if field.errors %}
+        <div>
+          <label>{{ field.label }}</label>
+          <div>{{ field }}
+            <span>
+              {% for error in  field.errors %}{{ error }}{% endfor %}
+            </span>
+          </div>
+        </div>
+        {% else %}
+        <div>
+          <label>{{ field.label }}</label>
+          <div>
+            {{ field }}
+            {% if field.help_text %}
+              <p><small>{{ field.help_text }}</small></p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
         {% endfor %}
       </fieldset>
       <div>

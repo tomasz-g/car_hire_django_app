@@ -17,118 +17,122 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+
 <body>
-    <div id="page-wrapper">
-        {% block header %}
-        <header> <!-- logo and website navigation bar -->
-            <img src="{% static 'images/car-hire-logo-1.png' %}" alt="company logo"/>
-            <section id="login">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}?next={{request.path}}">logout:<span>{{ user.get_username }}</span></a>
-                {% else %}
-                    <a href="{% url 'login' %}?next={{request.path}}">login</a>
-                {% endif %}
-            </section>
-            <nav class="top-nav" id="nav-icon">
-                <a href="#" class="icon" onclick="showHideMenu()">
-                    <i class="material-icons">menu</i>
-                </a>
-                {% if user.is_staff %}
-                <section class="staff-links">
-                  <span>STAFF</span>
-                  <div>
-                      <ul>
-                        <li><a href="{% url 'all-cars' %}">ALL-CARS</a></li>
-                        <li><a href="{% url 'all-available' %}">ALL-AVAILABLE</a></li>
-                        <li><a href="{% url 'all-rented' %}">ALL-RENTED</a></li>
-                        <li><a href="{% url 'all-overdue' %}">ALL-OVERDUE</a></li>
-                        <li><a href="{% url 'all-maintenance' %}">ALL-MAINTENANCE</a></li>
-                      </ul>
-                  </div>
-                </section> <!-- end staff-links -->
-                {% endif %}
-                <a href="{% url 'index' %}">HOME</a>
-                <a href="{% url 'all-models' %}">FLEET</a>
-                <a href="#">ABOUT US</a>
-                <a href="#">LOCATIONS</a>
-                <a href="{% url 'contact' %}">CONTACT</a>
-                {% if user.is_authenticated %}
-                    <a id="client-link"href="{% url 'client-cars' %}">My Cars</a>
-                {% endif %}
-            </nav> <!-- end top-nav -->
-        </header>
-        {% endblock %}
+  <div id="page-wrapper">
+    {% block header %}
+    <header> <!-- logo and website navigation bar -->
+      <img src="{% static 'images/car-hire-logo-1.png' %}" alt="company logo"/>
+      <section id="login">
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}?next={{request.path}}">logout:<span>{{ user.get_username }}</span></a>
+        {% else %}
+          <a href="{% url 'login' %}?next={{request.path}}">login</a>
+        {% endif %}
+      </section>
 
-        {% block main-content %}{% endblock %}
+      <nav class="top-nav" id="nav-icon">
+        <a href="#" class="icon" onclick="showHideMenu()">
+          <i class="material-icons">menu</i>
+        </a>
+        {% if user.is_staff %}
+        <section class="staff-links">
+          <span>STAFF</span>
+          <div>
+            <ul>
+              <li><a href="{% url 'all-cars' %}">ALL-CARS</a></li>
+              <li><a href="{% url 'all-available' %}">ALL-AVAILABLE</a></li>
+              <li><a href="{% url 'all-rented' %}">ALL-RENTED</a></li>
+              <li><a href="{% url 'all-overdue' %}">ALL-OVERDUE</a></li>
+              <li><a href="{% url 'all-maintenance' %}">ALL-MAINTENANCE</a></li>
+            </ul>
+          </div>
+        </section> <!-- end staff-links -->
+        {% endif %}
 
-        {% block pagination %}
-          {% if is_paginated %}
-              <div class="pagination">
-                      {% if page_obj.has_previous %}
-                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
-                              <i class="material-icons">navigate_before</i>
-                          </a>
-                      {% endif %}
-                      <span class="page-current">
-                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                      </span>
-                      {% if page_obj.has_next %}
-                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">
-                              <i class="material-icons">navigate_next</i>
-                          </a>
-                      {% endif %}
-              </div>
-          {% endif %}
-        {% endblock %}
+        <a href="{% url 'index' %}">HOME</a>
+        <a href="{% url 'all-models' %}">FLEET</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">LOCATIONS</a>
+        <a href="{% url 'contact' %}">CONTACT</a>
+        {% if user.is_authenticated %}
+          <a id="client-link"href="{% url 'client-cars' %}">My Cars</a>
+        {% endif %}
+      </nav> <!-- end top-nav -->
+    </header>
+    {% endblock %}
 
-        {% block footer %}
-        <footer><!-- contact, website navigation bar and logo -->
-            <nav class="contact-nav">
-                <h1>Contact Us</h1>
-                <a href="#"><i class="fa fa-phone-square"></i>+353-1-000000</a>
-                <a href="#"><i class="fa fa-envelope"></i>contact@carhire.temp</a>
-                <a href="#"><i class="fa fa-facebook-square"></i>carhire</a>
-                <a href="#"><i class="fa fa-google-plus-square"></i>carhire</a>
-                <a href="#"><i class="fa fa-linkedin-square"></i>carhire</a>
-                <a href="#"><i class="fa fa-twitter-square"></i>@carhire</a>
-                <a href="#"><i class="fa fa-instagram"></i>@carhire</a>
-            </nav>
-            <nav class="bottom-nav">
-                <a href="{% url 'index' %}">
-                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    Home
-                </a>
-                <i class="bar">|</i>
-                <a href="{% url 'all-models' %}">
-                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    Fleet
-                </a>
-                <i class="bar">|</i>
-                <a href="#">
-                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    About Us
-                </a>
-                <i class="bar">|</i>
-                <a href="#">
-                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    Locations
-                </a>
-                <i class="bar">|</i>
-                <a href="{% url 'contact' %}">
-                    <i class="fa fa-circle-thin" aria-hidden="true"></i>
-                    Contact
-                </a>
-            </nav>
-            <div>
-                <img src="{% static 'images/car-hire-logo-1.png' %}" alt="company logo"/>
-                <p><i class="fa fa-copyright"></i>Car Hire Company 2017</p>
-            </div>
+    {% block main-content %}{% endblock %}
+    {% block pagination %}
+      {% if is_paginated %}
+      <div class="pagination">
+        {% if page_obj.has_previous %}
+          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
+            <i class="material-icons">navigate_before</i>
+          </a>
+        {% endif %}
+        <span class="page-current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+        {% if page_obj.has_next %}
+          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">
+            <i class="material-icons">navigate_next</i>
+          </a>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endblock %}
 
-        </footer>
-        {% endblock %}
-    </div> <!-- end page-wrapper -->
+    {% block footer %}
+    <footer><!-- contact, website navigation bar and logo -->
+      <nav class="contact-nav">
+        <h1>Contact Us</h1>
+        <a href="#"><i class="fa fa-phone-square"></i>+353-1-000000</a>
+        <a href="#"><i class="fa fa-envelope"></i>contact@carhire.temp</a>
+        <a href="#"><i class="fa fa-facebook-square"></i>carhire</a>
+        <a href="#"><i class="fa fa-google-plus-square"></i>carhire</a>
+        <a href="#"><i class="fa fa-linkedin-square"></i>carhire</a>
+        <a href="#"><i class="fa fa-twitter-square"></i>@carhire</a>
+        <a href="#"><i class="fa fa-instagram"></i>@carhire</a>
+      </nav>
 
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
+      <nav class="bottom-nav">
+        <a href="{% url 'index' %}">
+          <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          Home
+        </a>
+        <i class="bar">|</i>
+        <a href="{% url 'all-models' %}">
+          <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          Fleet
+        </a>
+        <i class="bar">|</i>
+        <a href="#">
+          <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          About Us
+        </a>
+        <i class="bar">|</i>
+        <a href="#">
+          <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          Locations
+        </a>
+        <i class="bar">|</i>
+        <a href="{% url 'contact' %}">
+          <i class="fa fa-circle-thin" aria-hidden="true"></i>
+          Contact
+        </a>
+      </nav>
+
+      <div>
+        <img src="{% static 'images/car-hire-logo-1.png' %}" alt="company logo"/>
+        <p><i class="fa fa-copyright"></i>Car Hire Company 2017</p>
+      </div>
+    </footer>
+    {% endblock %}
+  </div> <!-- end page-wrapper -->
+
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
+  
 </body>
 </html>
