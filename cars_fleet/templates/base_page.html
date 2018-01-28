@@ -28,6 +28,7 @@
           <a href="{% url 'logout' %}?next={{request.path}}">logout:<span>{{ user.get_username }}</span></a>
         {% else %}
           <a href="{% url 'login' %}?next={{request.path}}">login</a>
+          <a href="{% url 'signup' %}?next={{request.path}}"> / signup</a>
         {% endif %}
       </section>
 
@@ -133,6 +134,6 @@
 
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
   <script type="text/javascript" src="{% static 'js/javascript.js' %}"></script>
-  
+
 </body>
 </html>
