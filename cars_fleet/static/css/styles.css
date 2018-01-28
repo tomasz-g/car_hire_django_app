@@ -107,7 +107,7 @@ a.icon {
 
 /* link "STAFF" and drop down menu
 - visible only when logged in with staff permission
-- on small devices */
+- small devices */
 section.staff-links > span {
     color: white;
     font-size: 1.3rem;
@@ -160,7 +160,7 @@ section.staff-links span + div > ul > li:hover > a {
     font-size: 1.6rem;
 }
 
-/* footer - base_page.html - visible on all pages - small devices style */
+/* footer - base_page.html - small devices */
 footer {
     background-image: url("../images/footer-background.jpg");
     background-size: cover;
@@ -228,7 +228,7 @@ i.bar {
     color: rgb(255, 255, 255);
 }
 
-/* under header section on home page - index.html - small devices */
+/* under header section - index.html - small devices */
 section.home-main-img {
     margin-top: 80px;
     grid-column: 1 / 5;
@@ -255,7 +255,7 @@ section.home-main-img h3 {
     padding-left: 5px;
 }
 
-/* main text on home page - index.html - smalll devices */
+/* main text - index.html - smalll devices */
 main {
     grid-column: 1 / 5;
     padding: 10px;
@@ -263,7 +263,7 @@ main {
     font-size: 1.1rem;
 }
 
-/* links - car logos images on home page - index.html - small devices */
+/* links - car logos images - index.html - small devices */
 section.home-manufacturers-logo {
     grid-column: 1 / 5;
     padding: 10px 0;
@@ -285,7 +285,7 @@ section.home-manufacturers-logo img:hover {
     padding: 0;
 }
 
-/* cars fleet secton on all-models page - small devices style */
+/* cars fleet secton - all-models.html - small devices */
 section.cars-fleet {
     font-family: Helvetica, Verdana, sans-serif;
     font-weight: bold;
@@ -324,7 +324,7 @@ section.car-container > a > img {
     height: auto;
     border-bottom: 1px solid rgb(200, 200, 200);
 }
-/* icons on the bottom of the car-container */
+/* icons - bottom of car-container */
 section.car-description {
     font-family: 'Open Sans Condensed';
     grid-column: 1 / 7;
@@ -353,7 +353,7 @@ section.car-description p:last-child {
     border-right: none;
 }
 
-/* car details on car-details and client-cars page - small devices style */
+/* car-details.html and client-cars.html pages - small devices style */
 section.car-details {
     padding-top: 20px;
     margin: 100px auto 50px;
@@ -460,7 +460,7 @@ section.form-wrapper {
     justify-content: start;
     align-items: start;
 }
-/* login pages - small devices style */
+/* login pages - small devices */
 section.login-form {
     font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
     font-weight: bold;
@@ -468,6 +468,7 @@ section.login-form {
     line-height: 1.9rem;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     padding-top: 60px;
     width: 100vw;
@@ -483,7 +484,7 @@ section.login-form {
     font-size: .8rem;
     font-weight: normal;
 }
-/* Contact page - small devices style */
+/* Contact page - small devices */
 section.contact-container {
     font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
     background-color: rgba(255, 69, 0, 0.7);
@@ -497,7 +498,7 @@ section.contact-container {
 fieldset {
     border: none;
 }
-/* submit button on form pages */
+/* submit button - form pages */
 .button {
     background-color: rgb(48, 214, 238);
     border: none;
@@ -507,7 +508,7 @@ fieldset {
     font-weight: bold;
     font-size: .7rem;
 }
-/* Thanks page - small devices style */
+/* thanks.html - small devices */
 section.email-thanks {
     font-family: Impact, 'Anton', sans-serif;
     background-color: rgba(255, 69, 0, 0.7);
@@ -540,11 +541,23 @@ section.email-thanks {
   to {font-size: 0%;}
 }
 
+section.confirm-email {
+  font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.9;
+  text-align: center;
+  background-color: rgba(255, 69, 0, 0.7);
+  line-height: 2.9rem;
+  padding-top: 60px;
+  width: 100vw;
+  min-height: 60vh;
+}
+
 /* ========== @media ========================= */
 
 @media(max-width:767px) {
 
-    /* hide main menu on - small devices */
+    /* hide main menu - small devices */
     nav.top-nav a:not(:first-child) {
         display: none;
     }
@@ -595,7 +608,7 @@ section.email-thanks {
         min-height: 100vh;
         max-width: 1280px;
     }
-    /* header - base_page.html - visible on all pages - large devices */
+    /* header - base_page.html - large devices */
     header {
         grid-column: 1 / 13;
         grid-row: 1 /2;
@@ -608,7 +621,7 @@ section.email-thanks {
         padding: 10px 0;
         max-width: 350px;
     }
-    /* under header-logo login */
+    /* header login/register */
     #login {
         padding: 10px 60px;
     }
@@ -635,7 +648,7 @@ section.email-thanks {
         padding-left: 100px;
         justify-content: flex-start
     }
-    /* footer - base_page.html - visible on all pages - large devices styles */
+    /* footer - base_page.html - large devices */
     footer {
         padding: 20px;
         grid-column: 1 / 13;
@@ -679,7 +692,7 @@ section.email-thanks {
         text-align: center;
     }
 
-    /* under header section on home page - index.html - large devices styles */
+    /* under header section - index.html - large devices */
     section.home-main-img {
         margin-top: 200px;
         grid-column: 1 / 13;
@@ -697,13 +710,13 @@ section.email-thanks {
         font-size: 1.5rem;
     }
 
-    /* main text on home page - index.html - large devices styles */
+    /* main text - index.html - large devices */
     main {
         grid-column: 1 / 13;
         padding: 30px 40px;
     }
 
-    /* links - car logos images on home page - index.html - large devices */
+    /* links - car logos images - index.html - large devices */
     section.home-manufacturers-logo {
         grid-column: 1 / 13;
         padding: 20px 0;
@@ -713,7 +726,7 @@ section.email-thanks {
         max-height: 150px;
     }
 
-    /* cars fleet secton on all-models page - large devices styles */
+    /* cars fleet secton on all-models.html - large devices */
     section.cars-fleet {
         grid-column: 1 / 13;
         margin: 200px auto 100px;
@@ -747,7 +760,7 @@ section.email-thanks {
         margin-right: 20px;
     }
 
-    /* car details on car-details and client-cars page -large devices styles */
+    /* car details on car-details.html and client-cars.html pages -large devices */
     section.car-details {
         grid-column: 3 / 11;
         margin: 250px auto 100px;
@@ -803,23 +816,28 @@ section.email-thanks {
     }
     /* login pages */
     section.login-form {
-        max-width: 1280px;
+      padding-left: 5%;
+      width: 45%
     }
     #lost-password {
         align-self: center;
     }
-    /* Contact page - large devices style */
+    /* contact.html - large devices */
     section.contact-container {
         justify-content: flex-start;
         padding-left: 5%;
         width: 45%;
     }
-    /* Thanks page - large devices style */
+    /* thanks.html - large devices */
     section.email-thanks {
         width: 45%;
         min-height: 60vh;
     }
     #thanks {
         font-size: 2rem;
+    }
+    section.confirm-email {
+      width: 45%;
+      font-size: 2rem;
     }
 } /* end min-width 768px */
