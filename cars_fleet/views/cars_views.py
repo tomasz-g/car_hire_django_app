@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin
 )
 
-from .models import Car, CarInstance
+from cars_fleet.models import Car, CarInstance
 
 
 """
