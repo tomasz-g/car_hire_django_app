@@ -1,0 +1,29 @@
+{% extends "base_page.html" %}
+
+{% block main-content %}
+
+<section class="form-wrapper">
+    <section class="login-form">
+      <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+          {% for field in form %}
+          <div class="tag-input">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+              <small style="display: none">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: black">{{ error }}</p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          <div>
+            <input class="button" type="submit" value="Sign up" />
+            <input type="hidden" name="next" value="{{ next }}" />
+          </div>
+      </form>
+    </section><!-- end login-form -->
+</section> <!-- end of form-wrapper -->
+
+{% endblock %}

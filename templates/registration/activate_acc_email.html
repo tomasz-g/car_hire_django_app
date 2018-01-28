@@ -1,0 +1,15 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Car Hire Contact Page Email</title>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <h3>Hi <strong>{{ user.username }}</strong>,</h3>
+  <p>
+  Please click on the link below to confirm your registration:
+  </p>
+  <b>http://{{ domain }}{% url 'activate' uidb64=uid token=token %}</b>
+</body>
+</html>
