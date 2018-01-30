@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template, render_to_string
 from django.core.mail import BadHeaderError, EmailMultiAlternatives, EmailMessage
