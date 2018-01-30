@@ -552,6 +552,11 @@ section.confirm-email {
   width: 100vw;
   min-height: 60vh;
 }
+section.confirm-email a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: lighter;
+}
 
 /* ========== @media ========================= */
 
