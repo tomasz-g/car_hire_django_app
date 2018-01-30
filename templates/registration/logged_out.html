@@ -1,10 +1,10 @@
 {% extends "base_page.html" %}
 
 {% block main-content %}
-
-<section class="login-form">
+<section class="form-wrapper">
+  <section class="confirm-email">
     <p>Logged out!</p>
-    <a href="{% url 'login'%}">Click here to login again.</a>
-</section> <!-- end login-form -->
-
+    <a href="{% url 'login' %}">Click here to login again.</a>
+  </section><<!-- end confirm-emai -->
+</section><!-- end form-wrapper -->
 {% endblock %}

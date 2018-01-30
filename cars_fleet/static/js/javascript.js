@@ -1,4 +1,4 @@
-/* show/hide navigation menu on small devices */
+/* show/hide navigation menu - small devices */
 function showHideMenu() {
     var navigationBar = document.getElementById("nav-icon");
     if (navigationBar.className === "top-nav") {
