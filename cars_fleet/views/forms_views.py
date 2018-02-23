@@ -1,15 +1,21 @@
-from datetime import datetime
-from django.shortcuts import render
+from django.utils import timezone
+
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template.loader import get_template, render_to_string
-from django.core.mail import BadHeaderError, EmailMultiAlternatives, EmailMessage
+from django.core.mail import (
+    BadHeaderError, EmailMultiAlternatives, EmailMessage
+)
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import login
 from django.contrib.auth.models import User
-from cars_fleet.forms import ContactForm, SignUpForm
+from cars_fleet.forms import ContactForm, SignUpForm, RentCarDateForm
 from cars_fleet.tokens import acc_activation_token
+
+from cars_fleet.models import CarInstance, Car
+from django.views import generic
 
 
 """
@@ -25,7 +31,7 @@ def contact(request):
             message = form.cleaned_data['message']
             contact_email = form.cleaned_data['contact_email']
             try:
-                current_time = datetime.now()
+                current_time = timezone.now()
                 html = get_template('cars_fleet/email_html.html')
                 html_content = html.render(
                     {
@@ -84,7 +90,7 @@ def signup(request):
             )
             msg.attach_alternative(html_message, "text/html")
             msg.send()
-            on_page_text = 'Please check your email to confirm your registration.'
+            on_page_text = 'Please check your email to confirm registration.'
             return render(request,
                 'registration/acc_activation_confirm.html', {
                 'text': on_page_text
@@ -105,17 +111,43 @@ def activate(request, uidb64, token):
     if user is not None and acc_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        #login(request, user)
-        on_page_text = 'Thank you for your email confirmation, you can log in now.'
+        on_page_text = """Thank you for your email confirmation,
+                          you can log in now."""
         return render(request,
             'registration/acc_activation_confirm.html', {
-            'text': on_page_text
+            'text': on_page_text,
             }
         )
     else:
         on_page_text = 'Activation link is invalid!'
         return render(request,
             'registration/acc_activation_confirm.html', {
-            'text': on_page_text
+            'text': on_page_text,
             }
         )
+
+# Pick a date Form
+def rent_car(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+    if request.method == 'GET':
+        form = RentCarDateForm(
+            initial={
+                'date_of_rent': timezone.now(),
+                'date_of_return': timezone.now() + timezone.timedelta(days=1)
+            }
+        )
+    else:
+        form = RentCarDateForm(request.POST)
+        if form.is_valid():
+            user = request.user.get_username()
+            on_page_text = 'Thank you {}.<br/>{} has been booked.'.format(
+                user, car.car_make_and_model,
+            )
+            return render(request,
+                'registration/acc_activation_confirm.html', {
+                'text': on_page_text,
+                }
+            )
+
+    return render(request,
+        'cars_fleet/rent_car_date.html', {'form': form, 'cars_details': car,})
