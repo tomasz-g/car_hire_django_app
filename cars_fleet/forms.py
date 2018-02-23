@@ -1,7 +1,12 @@
 from django import forms
+from django.forms import ModelForm
+
+from .models import CarInstance
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+import datetime
 
 
 # Form cars_fleet/contact.html
@@ -21,3 +26,17 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email','password1', 'password2', )
+
+
+# Form cars_fleet/car-details.html (date picker widget)
+class DateInput(forms.DateInput):
+    input_type = 'date'
+    #initial = datetime.date.today()
+
+
+class RentCarDateForm(ModelForm):
+
+    class Meta:
+        model = CarInstance
+        fields = ['date_of_rent', 'date_of_return']
+        widgets = {'date_of_rent': DateInput(), 'date_of_return': DateInput(),}
