@@ -1,0 +1,92 @@
+{% extends "base_page.html" %}
+
+{% block title %}<title>Pick a Date</title>{% endblock %}
+
+{% block main-content %}
+<section class="car-details">
+{% for car in cars_details.carinstance_set.all %}
+  <section class="car-details-container">
+    <h1>{{ cars_details.car_make_and_model }}</h1>
+    {% if car.car_status == 'a' %}
+      <span class="calendar">
+        {% if user.is_authenticated %}
+        <section class="rent-form">
+          <form action="" method="post">
+            {% for field in form %}
+            {% if field.errors %}
+            <div>
+              <label>{{ field.label }}</label>
+              <div>{{ field }}
+                <span>
+                  {% for error in  field.errors %}{{ error }}{% endfor %}
+                </span>
+              </div>
+            </div>
+            {% else %}
+            <div>
+              <label>{{ field.label }}</label>
+              <div>
+                {{ field }}
+                {% if field.help_text %}
+                  <p><small>{{ field.help_text }}</small></p>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+            {% comment block %}
+            {% csrf_token %}
+            {{ form }}
+            {% endcomment %}
+            <div>
+              <button type="submit" value="Submit Button" class="button">
+                Rent
+              </button>
+            </div>
+          </form>
+        </section> <!-- end of rent-form -->
+        {% else %}
+          <a href="{% url 'login' %}?next={{ request.path }}">Login to rent.</a>
+        {% endif %}
+      </span>
+    {% else %}
+    <span class="not-available">
+      {{ car.get_car_status }}
+    </span>
+    {% endif %}
+    <img class="image-link" src="{{ cars_details.car_image.url }}" alt="{{ cars_details.car_make_and_model }} Image"/>
+    <section class="car-details-description">
+      <i class="material-icons">euro_symbol</i>
+      <p>{{ cars_details.car_type }}</p>
+      <i class="material-icons">directions_car</i>
+      <p>{{ cars_details.car_body }}</p>
+      <i class="material-icons">airline_seat_recline_normal</i>
+      <p>{{ cars_details.passangers }}</p>
+      <i id="door" class="material-icons">sim_card_alert</i>
+      <p>{{ cars_details.num_of_doors }}</p>
+      {% if car.engine_size %}
+        <i class="material-icons">view_carousel</i>
+        <p>{{ car.engine_size }} liter</p>
+      {% endif %}
+      <i class="material-icons">local_gas_station</i>
+      <p>{{ car.fuel }}</p>
+      <i class="material-icons">settings</i>
+      <p>{{ car.transmission }}</p>
+    </section> <!-- end car-details-description -->
+
+    <section class="car-detail-extras">
+    {% if car.display_specs %}
+    {% for spec in car.display_specs %}
+      <span>
+        <i class="material-icons">done</i>
+        <p {% if forloop.last %} class="no-separetor"{% endif %}>{{ spec }}</p>
+      </span>
+    {% endfor %}
+    {% endif %}
+    </section>
+  </section> <!-- end car-details-container -->
+{% endfor %} <!-- end for loop in cars_details.carinstance_set.all -->
+</section> <!-- end car-details -->
+
+{% endblock %}
