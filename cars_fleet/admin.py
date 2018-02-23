@@ -94,6 +94,7 @@ class CarInstanceAdmin(admin.ModelAdmin):
         'get_passangers_num',
         'display_specs',
         'car_status',
+        'date_of_rent',
         'date_of_return_view',
         'rented_to_client',
     )
@@ -107,6 +108,7 @@ class CarInstanceAdmin(admin.ModelAdmin):
         'car_specifications',
         'car_status',
         'rented_to_client',
+        'date_of_rent',
         'date_of_return',
     ]
 
