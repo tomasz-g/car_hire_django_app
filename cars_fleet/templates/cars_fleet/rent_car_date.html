@@ -12,6 +12,7 @@
         {% if user.is_authenticated %}
         <section class="rent-form">
           <form action="" method="post">
+            {% csrf_token %}
             {% for field in form %}
             {% if field.errors %}
             <div>
@@ -34,7 +35,7 @@
             </div>
             {% endif %}
             {% endfor %}
-            
+
             {% comment block %}
             {% csrf_token %}
             {{ form }}
