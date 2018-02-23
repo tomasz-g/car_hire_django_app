@@ -1,12 +1,14 @@
 {% extends "base_page.html" %}
 
-{% block title %}<title>Confirm email</title>{% endblock %}
+{% block title %}{% endblock %}
 
 {% block main-content %}
 <section class="form-wrapper">
   <section class="confirm-email">
   <p>
+    {% autoescape off %}
     {{ text }}
+    {% endautoescape %}
   </p>
   </section><!-- end of confirm-email -->
 </section><!-- end of form-wrapper -->

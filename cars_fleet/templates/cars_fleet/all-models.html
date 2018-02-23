@@ -8,7 +8,7 @@
 {% for car in cars_fleet %}
   <section class="car-container">
     <h1>{{ car.car_make_and_model }} <span>{{ car.car_type }}</span></h1>
-    <a href="{{ car.get_absolute_url }}">
+    <a href="{% url 'rent-date-pick' car.pk %}">
       <img class="image-link" src="{{ car.car_image.url }}" alt="{{ car.car_make_and_model }} Image"/>
     </a>
     <section class="car-description">

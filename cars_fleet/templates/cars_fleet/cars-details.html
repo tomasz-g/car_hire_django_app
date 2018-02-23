@@ -7,7 +7,13 @@
 {% for car in cars_details.carinstance_set.all %}
   <section class="car-details-container">
     <h1>{{ cars_details.car_make_and_model }}</h1>
-    {% if car.car_status != 'a' %}
+    {% if car.car_status == 'a' %}
+      {% if user.is_authenticated %}
+        <a href="{% url 'rent-date-pick' car.pk %}">Rent this car.</a>
+      {% else %}
+        <a href="{% url 'login' %}?next={{ request.path }}">Login to rent this car.</a>
+      {% endif %}
+    {% else %}
     <span class="not-available">
       {{ car.get_car_status }}
     </span>
