@@ -1,4 +1,8 @@
-
+/*
+@media
+Medium: min-width:465px start line ~570
+Large: min-width:768px start line ~610
+*/
 /* RESET */
 * {
     margin: 0;
@@ -373,23 +377,38 @@ section.car-details-container {
     grid-row-gap: 20px;
 }
 section.car-details-container h1 {
-    grid-column: 2 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
     color: rgb(255, 255, 255);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: left;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 section.car-details-container > span {
     grid-row: 1;
-    grid-column: 7 / 10;
+    grid-column: 6 / 11;
     padding-left: 5px;
     font-size: .6rem;
     align-self: end;
     justify-self: end;
+    padding-right: 10px;
+}
+span.available {
+  color: rgb(45, 255, 45);
 }
 span.not-available {
     color: rgb(255, 45, 45);
+}
+span.calendar a {
+    color: rgb(48, 214, 238);
+    text-decoration: none;
+}
+span.calendar a:hover {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+section.rent-form form {
+  color: rgb(255, 255, 255);
 }
 section.car-details-container > img {
     grid-row: 2 / auto;
@@ -559,6 +578,16 @@ section.confirm-email a {
 }
 
 /* ========== @media ========================= */
+
+@media(min-width:465px) {
+  section.car-details-container h1 {
+      grid-column: 2 / 6;
+      font-size: 1.2rem;
+  }
+  section.car-details-container > span {
+      grid-column: 6 / 10;
+  }
+}
 
 @media(max-width:767px) {
 
