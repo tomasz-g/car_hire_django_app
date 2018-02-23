@@ -30,6 +30,7 @@ urlpatterns += [
 # URLs available only for logged in users
 urlpatterns += [
     url(r'^myaccount/$', cars_views.RentedCarsByClientListView.as_view(), name="client-cars"),
+    url(r'^rent-date-pick/(?P<pk>\d+)$', forms_views.rent_car, name="rent-date-pick"),
 ]
 
 urlpatterns += [
