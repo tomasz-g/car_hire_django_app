@@ -128,7 +128,7 @@ def activate(request, uidb64, token):
 
 # Pick a date Form
 def rent_car(request, pk):
-    car = get_object_or_404(Car, pk=pk)
+    car = get_object_or_404(CarInstance, pk=pk)
     if request.method == 'GET':
         form = RentCarDateForm(
             initial={
@@ -141,8 +141,13 @@ def rent_car(request, pk):
         if form.is_valid():
             user = request.user.get_username()
             on_page_text = 'Thank you {}.<br/>{} has been booked.'.format(
-                user, car.car_make_and_model,
+                user, car.car.car_make_and_model,
             )
+            car.car_status = 'n'
+            car.rented_to_client = request.user
+            car.date_of_rent = form.cleaned_data['date_of_rent']
+            car.date_of_return = form.cleaned_data['date_of_return']
+            car.save()
             return render(request,
                 'registration/acc_activation_confirm.html', {
                 'text': on_page_text,
@@ -150,4 +155,4 @@ def rent_car(request, pk):
             )
 
     return render(request,
-        'cars_fleet/rent_car_date.html', {'form': form, 'cars_details': car,})
+        'cars_fleet/rent_car_date.html', {'form': form, 'car': car,})
