@@ -324,3 +324,6 @@ class CarInstance(models.Model):
     def clean(self):
         if self.rented_to_client and self.car_status == 'a':
             raise ValidationError("Change car status!")
+
+    def change_car_status(self, status):
+        self.car_status = status
