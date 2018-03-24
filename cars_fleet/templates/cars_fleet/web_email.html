@@ -1,0 +1,26 @@
+{% extends "base_email.html" %}
+
+{% block title %}Contact Page Email{% endblock %}
+
+{% block email_body %}
+<tr>
+ <td>
+   Send at: {{ current_time }} {{ current_zone }}<hr>
+ </td>
+</tr>
+<tr>
+ <td>
+   Email from: <strong>{{ contact_email }}</strong>
+ </td>
+</tr>
+<tr>
+ <td style="padding-top: 10px;">
+  Subject: {{ subject }}
+ </td>
+</tr>
+<tr>
+ <td style="padding: 20px;">
+  {{ message }}
+ </td>
+</tr>
+{% endblock %}
