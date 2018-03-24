@@ -396,8 +396,16 @@ section.car-details-container > span {
 span.available {
   color: rgb(45, 255, 45);
 }
+span.available > a {
+  color: rgb(45, 255, 45);
+  text-decoration: none;
+}
 span.not-available {
     color: rgb(255, 45, 45);
+}
+span.not-available > a {
+    color: rgb(255, 45, 45);
+    text-decoration: none;
 }
 span.calendar a {
     color: rgb(48, 214, 238);

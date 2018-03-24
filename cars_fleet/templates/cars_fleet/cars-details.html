@@ -10,11 +10,11 @@
     {% if car.car_status == 'a' %}
       {% if user.is_authenticated %}
       <span class="available">
-        <a href="{% url 'rent-date-pick' car.pk %}">Rent this car.</a>
+        <a href="{% url 'rent-date-pick' car.pk %}">Rent this car</a>
       </span>
       {% else %}
       <span class="not-available">
-        <a href="{% url 'login' %}?next={{ request.path }}">Login to rent this car.</a>
+        <a href="{% url 'login' %}?next={{ request.path }}">Login to rent</a>
       </span>
       {% endif %}
     {% else %}
