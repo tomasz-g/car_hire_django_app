@@ -4,10 +4,8 @@
 
 {% block main-content %}
 <section class="car-details">
-{% for car in cars_details.carinstance_set.all %}
   <section class="car-details-container">
-    <h1>{{ cars_details.car_make_and_model }}</h1>
-    {% if car.car_status == 'a' %}
+    <h1>{{ car.car.car_make_and_model }}</h1>
       <span class="calendar">
         {% if user.is_authenticated %}
         <section class="rent-form">
@@ -35,11 +33,6 @@
             </div>
             {% endif %}
             {% endfor %}
-
-            {% comment block %}
-            {% csrf_token %}
-            {{ form }}
-            {% endcomment %}
             <div>
               <button type="submit" value="Submit Button" class="button">
                 Rent
@@ -51,21 +44,16 @@
           <a href="{% url 'login' %}?next={{ request.path }}">Login to rent.</a>
         {% endif %}
       </span>
-    {% else %}
-    <span class="not-available">
-      {{ car.get_car_status }}
-    </span>
-    {% endif %}
-    <img class="image-link" src="{{ cars_details.car_image.url }}" alt="{{ cars_details.car_make_and_model }} Image"/>
+    <img class="image-link" src="{{ car.car.car_image.url }}" alt="{{ car.car.car_make_and_model }} Image"/>
     <section class="car-details-description">
       <i class="material-icons">euro_symbol</i>
-      <p>{{ cars_details.car_type }}</p>
+      <p>{{ car.car.car_type }}</p>
       <i class="material-icons">directions_car</i>
-      <p>{{ cars_details.car_body }}</p>
+      <p>{{ car.car.car_body }}</p>
       <i class="material-icons">airline_seat_recline_normal</i>
-      <p>{{ cars_details.passangers }}</p>
+      <p>{{ car.car.passangers }}</p>
       <i id="door" class="material-icons">sim_card_alert</i>
-      <p>{{ cars_details.num_of_doors }}</p>
+      <p>{{ car.car.num_of_doors }}</p>
       {% if car.engine_size %}
         <i class="material-icons">view_carousel</i>
         <p>{{ car.engine_size }} liter</p>
@@ -87,7 +75,6 @@
     {% endif %}
     </section>
   </section> <!-- end car-details-container -->
-{% endfor %} <!-- end for loop in cars_details.carinstance_set.all -->
 </section> <!-- end car-details -->
 
 {% endblock %}
