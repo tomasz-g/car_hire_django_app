@@ -32,13 +32,15 @@ def contact(request):
             contact_email = form.cleaned_data['contact_email']
             try:
                 current_time = timezone.now()
-                html = get_template('cars_fleet/email_html.html')
+                current_zone = timezone.get_current_timezone_name()
+                html = get_template('cars_fleet/web_email.html')
                 html_content = html.render(
                     {
                         'subject': subject,
                         'message': message,
                         'contact_email': contact_email,
                         'current_time': current_time,
+                        'current_zone': current_zone,
                     }
                 )
                 msg = EmailMessage(
