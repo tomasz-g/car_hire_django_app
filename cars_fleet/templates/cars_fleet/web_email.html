@@ -5,21 +5,29 @@
 {% block email_body %}
 <tr>
  <td>
-   Send at: {{ current_time }} {{ current_zone }}<hr>
+   Send: {{ current_time }}
  </td>
 </tr>
+
+<tr>
+ <td>
+   Zone: {{ current_zone }}
+ </td>
+</tr>
+
 <tr>
  <td>
    Email from: <strong>{{ contact_email }}</strong>
  </td>
 </tr>
+
 <tr>
  <td style="padding-top: 10px;">
   Subject: {{ subject }}
  </td>
 </tr>
 <tr>
- <td style="padding: 20px;">
+ <td style="padding-top: 20px;">
   {{ message }}
  </td>
 </tr>
