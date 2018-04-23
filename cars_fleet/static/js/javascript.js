@@ -13,3 +13,13 @@ $(document).ready(function() {
   $('nav.top-nav > a.current').removeClass('current');
   $('a[href="' + location.pathname + '"]').closest('nav.top-nav > a').addClass('current');
 });
+
+/* shrink top nav if user scroll down the page */
+$(window).scroll(function() {
+  if ($(document).scrollTop() > 100) {
+    $('header').addClass('shrink');
+  } else {
+    $('header').removeClass('shrink');
+
+  }
+});
