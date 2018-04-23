@@ -10,7 +10,10 @@ Large: min-width:768px start line ~610
     box-sizing: border-box;
     transition: all .6s;
 }
-
+body {
+  margin:0;
+  padding: 0;
+}
 html {
     font-family: 'Open Sans Condensed', Helvetica, Verdana, Arial, sans-serif;
     font-size: 21px;
